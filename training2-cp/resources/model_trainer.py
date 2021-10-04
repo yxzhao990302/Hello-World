@@ -6,35 +6,29 @@ import os
 from flask import jsonify
 from keras.layers import Dense
 from keras.models import Sequential
+from sklearn.linear_model import Ridge
 
 
 def train(dataset):
     # split into input (X) and output (Y) variables
-    X = dataset[:, 0:8]
-    Y = dataset[:, 8]
-    # define model
-    model = Sequential()
-    model.add(Dense(12, input_dim=8, activation='relu'))
-    model.add(Dense(8, activation='relu'))
-    model.add(Dense(1, activation='sigmoid'))
-    # compile model
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-    # Fit the model
-    model.fit(X, Y, epochs=150, batch_size=10, verbose=0)
-    # evaluate the model
-    scores = model.evaluate(X, Y, verbose=0)
-    print(model.metrics_names)
-    text_out = {
-        "accuracy:": scores[1],
-        "loss": scores[0],
-    }
-    # Saving model in a given location provided as an env. variable
+    X = dataset.iloc[:, :-1].values
+    y = dataset.iloc[:, 1].values
+
+    # Splitting the dataset into the Training set and Test set
+    #from sklearn.model_selection import train_test_split
+
+    # Fitting Simple Linear Regression to the Training set
+    #from sklearn.linear_model import LinearRegression, Ridge
+    regressor1 = Ridge(alpha=10)
+    regressor1.fit(X, y)
+    text_out ={"model built successfully"}
+    
     model_repo = os.environ['MODEL_REPO']
     if model_repo:
-        file_path = os.path.join(model_repo, "model.h5")
+        file_path = os.path.join(model_repo, "model2.h5")
         model.save(file_path)
         logging.info("Saved the model to the location : " + model_repo)
         return jsonify(text_out), 200
     else:
-        model.save("model.h5")
+        model.save("model2.h5")
         return jsonify({'message': 'The model was saved locally.'}), 200
