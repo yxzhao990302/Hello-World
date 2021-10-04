@@ -6,6 +6,8 @@ import os
 from flask import jsonify
 from keras.layers import Dense
 from keras.models import Sequential
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
 
 
 def train(dataset):
