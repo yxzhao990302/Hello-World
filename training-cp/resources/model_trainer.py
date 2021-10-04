@@ -6,7 +6,6 @@ import os
 from flask import jsonify
 from keras.layers import Dense
 from keras.models import Sequential
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
 
@@ -17,12 +16,11 @@ def train(dataset):
 
     # Splitting the dataset into the Training set and Test set
     #from sklearn.model_selection import train_test_split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 1/3, random_state = 0)
 
     # Fitting Simple Linear Regression to the Training set
     #from sklearn.linear_model import LinearRegression, Ridge
     regressor = LinearRegression()
-    regressor.fit(X_train, y_train)
+    regressor.fit(X, y)
     text_out ={"model built successfully"}
     
     model_repo = os.environ['MODEL_REPO']
