@@ -2,6 +2,7 @@ import os
 
 from flask import jsonify
 from keras.models import load_model
+from sklearn.linear_model import LinearRegression, Ridge
 
 
 # make prediction
