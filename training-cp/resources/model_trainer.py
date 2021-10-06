@@ -22,8 +22,8 @@ def train(dataset):
     #from sklearn.linear_model import LinearRegression, Ridge
     model = LinearRegression()
     model.fit(X, Y)
-   
-    text_out ={'message': 'model built successfully'}
+ 
+    text_out ={"message": 'model built successfully'}
     
     model_repo = os.environ['MODEL_REPO']
     if model_repo:
