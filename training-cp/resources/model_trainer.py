@@ -19,8 +19,8 @@ def train(dataset):
 
     # Fitting Simple Linear Regression to the Training set
     #from sklearn.linear_model import LinearRegression, Ridge
-    regressor = LinearRegression()
-    regressor.fit(X, Y)
+    model = LinearRegression()
+    model.fit(X, Y)
     text_out ={"model built successfully"}
     
     model_repo = os.environ['MODEL_REPO']
