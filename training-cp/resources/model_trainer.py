@@ -7,6 +7,7 @@ from flask import jsonify
 from keras.layers import Dense
 from keras.models import Sequential
 from sklearn.linear_model import LinearRegression
+import pickle
 
 
 def train(dataset):
