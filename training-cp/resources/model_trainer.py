@@ -11,8 +11,8 @@ from sklearn.linear_model import LinearRegression
 
 def train(dataset):
     # split into input (X) and output (Y) variables
-    X = dataset.iloc[:, :-1].values
-    y = dataset.iloc[:, 1].values
+    X = dataset[:,1]
+    y = dataset[:,0]
 
     # Splitting the dataset into the Training set and Test set
     #from sklearn.model_selection import train_test_split
