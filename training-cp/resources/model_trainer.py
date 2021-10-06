@@ -12,7 +12,7 @@ from sklearn.linear_model import LinearRegression
 def train(dataset):
     # split into input (X) and output (Y) variables
     X = dataset[:,1]
-    y = dataset[:,0]
+    Y = dataset[:,0]
 
     # Splitting the dataset into the Training set and Test set
     #from sklearn.model_selection import train_test_split
@@ -20,7 +20,7 @@ def train(dataset):
     # Fitting Simple Linear Regression to the Training set
     #from sklearn.linear_model import LinearRegression, Ridge
     regressor = LinearRegression()
-    regressor.fit(X, y)
+    regressor.fit(X, Y)
     text_out ={"model built successfully"}
     
     model_repo = os.environ['MODEL_REPO']
