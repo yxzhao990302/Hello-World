@@ -25,10 +25,10 @@ def train(dataset):
     
     model_repo = os.environ['MODEL_REPO']
     if model_repo:
-        file_path = os.path.join(model_repo, "model1.h5")
-        model.save(file_path)
+        file_path = os.path.join(model_repo, "model.pickle")
+        pickle.dump(model, open(file_path, 'wb'))
         logging.info("Saved the model to the location : " + model_repo)
         return jsonify(text_out), 200
     else:
-        model.save("model1.h5")
+        pickle.dump(model, open("model.pickle", 'wb'))
         return jsonify({'message': 'The model was saved locally.'}), 200
