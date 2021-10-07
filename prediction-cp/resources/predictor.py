@@ -15,9 +15,10 @@ def predict(dataset):
         model1 = pickle.load(open(file_path1, 'rb'))
         model2 = pickle.load(open(file_path2, 'rb'))
         val_set2 = dataset.copy()
-        result = model.predict(dataset)
-        val_set2['salary_lineargression'] = result.tolist()
-        val_set2['salary_ridge'] = result.tolist()
+        result1 = model1.predict(dataset)
+        result2 = model2.predict(dataset)
+        val_set2['salary_lineargression'] = result1.tolist()
+        val_set2['salary_ridge'] = result2.tolist()
         dic = val_set2.to_dict(orient='records')
         return jsonify(dic), 200
     else:
