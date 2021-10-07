@@ -10,11 +10,14 @@ import pickle
 def predict(dataset):
     model_repo = os.environ['MODEL_REPO']
     if model_repo:
-        file_path = os.path.join(model_repo, "model.pickle")
-        model = pickle.load(open(file_path, 'rb'))
+        file_path1 = os.path.join(model_repo, "model.pickle")
+        file_path2 = os.path.join(model_repo, "model2.pickle")
+        model1 = pickle.load(open(file_path1, 'rb'))
+        model2 = pickle.load(open(file_path2, 'rb'))
         val_set2 = dataset.copy()
         result = model.predict(dataset)
-        val_set2['salary'] = result.tolist()
+        val_set2['salary_lineargression'] = result.tolist()
+        val_set2['salary_ridge'] = result.tolist()
         dic = val_set2.to_dict(orient='records')
         return jsonify(dic), 200
     else:
