@@ -11,7 +11,7 @@ def predict(dataset):
     model_repo = os.environ['MODEL_REPO']
     if model_repo:
         file_path = os.path.join(model_repo, "model.pickle")
-        model = pickle.load(open(file_path), 'rb')
+        model = pickle.load(open(file_path, 'rb'))
         val_set2 = dataset.copy()
         result = model.predict(dataset)
         val_set2['salary'] = result.tolist()
