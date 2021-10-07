@@ -22,15 +22,13 @@ def train(dataset):
     #from sklearn.linear_model import LinearRegression, Ridge
     model = LinearRegression()
     model.fit(X, Y)
- 
-    text_out ={"message": 'model built successfully'}
     
     model_repo = os.environ['MODEL_REPO']
     if model_repo:
         file_path = os.path.join(model_repo, "model.pickle")
         pickle.dump(model, open(file_path, 'wb'))
         logging.info("Saved the model to the location : " + model_repo)
-        return jsonify(text_out), 200
+        return jsonify({'message': 'model was built successfully.'}), 200
     else:
         pickle.dump(model, open(file_path, 'wb'))
         return jsonify({'message': 'The model was saved locally.'}), 200
