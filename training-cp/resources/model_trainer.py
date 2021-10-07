@@ -32,5 +32,5 @@ def train(dataset):
         logging.info("Saved the model to the location : " + model_repo)
         return jsonify(text_out), 200
     else:
-        pickle.dump(model, open("model.pickle", 'wb'))
+        pickle.dump(model, open(file_path, 'wb'))
         return jsonify({'message': 'The model was saved locally.'}), 200
