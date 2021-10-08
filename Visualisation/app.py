@@ -13,9 +13,9 @@ app.config["DEBUG"] = True
 
 @app.route('/training-cp/model', methods=['POST'])
 def train_models():
-    db_api = os.environ['TRAININGDB_API']
+    test_api=os.environ['TESTING_API']
     # Make a GET request to training db service to retrieve the training data/features.
-    r = requests.get(db_api)
+    r = requests.get(test_api)
     j = r.json()
     df = pd.DataFrame.from_dict(j)
     resp = model_trainer.train(df.values)
